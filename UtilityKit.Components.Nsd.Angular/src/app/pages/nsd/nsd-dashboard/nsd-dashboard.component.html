@@ -1,0 +1,185 @@
+<div class="card h-100 py-4">
+  <div
+    class="card-header d-flex justify-content-between align-items-center border-0 mb-5"
+  >
+    <!--begin::Page title-->
+    <div class="d-flex">
+      <!--begin::Title-->
+      <h1
+        class="page-heading text-dark fw-bold fs-4 d-flex flex-column justify-content-center my-0"
+      >
+        Dashboard List
+        <span class="text-muted fs-8 fw-normal mt-2"
+          >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy</span
+        >
+      </h1>
+      <!--end::Title-->
+    </div>
+    <!--begin::Primary button-->
+    <a class="btn btn-sm fw-bold btn-dark" (click)="openManageDashboard()">
+      <i class="fa fa-plus me-2"></i>
+      Add New</a
+    >
+
+    <!--end::Primary button-->
+
+    <!--end::Page title-->
+  </div>
+
+  <div
+    *ngIf="Dashboards.length === 0 && flag"
+    class="d-flex justify-content-center align-content-center align-items-center"
+  >
+    <!--begin::Alert-->
+    <div
+      class="w-100 d-flex flex-column justify-content-center justify-items-center align-content-center align-items-center p-5 mb-0"
+    >
+      <!--begin::Icon-->
+      <img
+        src="assets/media/alert/alert.svg"
+        class="mx-auto h-200px h-lg-200px"
+      />
+      <!--end::Icon-->
+      <div class="fs-1 fw-bold text-gray-800 text-center mb-5">
+        Currently, No dashboards found.
+        <span class="fs-4 text-muted d-block fw-normal"
+          >Click to add new dashboard</span
+        >
+      </div>
+      <a
+        class="btn btn-flex btn-sm btn-primary fw-bold border-0"
+        (click)="openManageDashboard()"
+      >
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen041.svg'"
+          class="svg-icon svg-icon-2"
+        ></span>
+        Add New</a
+      >
+    </div>
+    <!--end::Alert-->
+  </div>
+
+  <div class="card-body pt-0" [hidden]="Dashboards.length === 0">
+    <div class="row">
+      <div class="col-xl-4 col-md-6 mb-4" *ngFor="let item of this.Dashboards">
+        <div class="card card-bordered shadow-sm mb-4 h-100">
+          <div class="card-body p-4 pb-0">
+            <div class="d-flex flex-wrap flex-sm-nowrap">
+              <!--begin: Pic-->
+              <div class="me-7">
+                <div
+                  class="symbol symbol-60px symbol-lg-125px symbol-fixed"
+                  *ngIf="
+                    item.layoutId === '2d074daf-a602-40f6-b99e-8bd91ed5013f'
+                  "
+                >
+                  <img src="assets/media/LayoutThumbnails/1.png" alt="image" />
+                </div>
+                <div
+                  class="symbol symbol-60px symbol-lg-125px symbol-fixed"
+                  *ngIf="
+                    item.layoutId === '8c50bd8a-3f74-4881-9bb8-036dc068aeb2'
+                  "
+                >
+                  <img src="assets/media/LayoutThumbnails/2.png" alt="image" />
+                </div>
+                <div
+                  class="symbol symbol-60px symbol-lg-125px symbol-fixed"
+                  *ngIf="
+                    item.layoutId === 'c87beda2-72eb-442c-adec-4605445cda33'
+                  "
+                >
+                  <img src="assets/media/LayoutThumbnails/3.png" alt="image" />
+                </div>
+              </div>
+              <!--end::Pic-->
+
+              <!--begin::Info-->
+              <div class="flex-grow-1">
+                <!--begin::Title-->
+                <div
+                  class="d-flex justify-content-between align-items-start flex-wrap mb-2"
+                >
+                  <!--begin::User-->
+                  <div class="d-flex flex-column">
+                    <!--begin::Name-->
+                    <div class="d-flex align-items-center mb-2">
+                      <h1
+                        class="page-heading fs-5 fw-bold text-capitalize my-0"
+                      >
+                        {{ item.name }}
+                      </h1>
+                    </div>
+                    <!--end::Name-->
+
+                    <!--begin::Info-->
+                    <div
+                      class="d-flex flex-wrap flex-column fw-semibold fs-6 pe-2"
+                    >
+                      <span class="text-muted fs-8 fw-semibold">
+                        Creation Date:
+                        <span class="text-dark fs-8 fw-semibold ms-4">
+                          {{ item.creationDate }}
+                        </span>
+                      </span>
+                      <span class="text-muted fs-8 fw-semibold">
+                        Last Modified Date:
+                        <span class="text-dark fs-8 fw-semibold ms-4">
+                          {{ item.lastModifiedDate }}
+                        </span>
+                      </span>
+                    </div>
+                    <!--end::Info-->
+                  </div>
+                  <!--end::User-->
+
+                  <!--begin::Actions-->
+                  <div class="d-flex mt-6">
+                    <a
+                      placement="top"
+                      ngbTooltip="Edit"
+                      (click)="onEdit(item)"
+                      class="btn btn-icon btn-bg-light btn-color-gray-800 btn-sm me-1"
+                    >
+                      <span
+                        [inlineSVG]="
+                          './assets/media/icons/duotune/general/gen055.svg'
+                        "
+                        class="svg-icon svg-icon-3"
+                      ></span>
+                    </a>
+                    <a
+                      placement="top"
+                      ngbTooltip="Delete"
+                      (click)="onDelete(item)"
+                      class="btn btn-icon btn-bg-light btn-color-gray-800 btn-sm me-1"
+                    >
+                      <span
+                        [inlineSVG]="
+                          './assets/media/icons/duotune/general/gen027.svg'
+                        "
+                        class="svg-icon svg-icon-3"
+                      ></span>
+                    </a>
+                    <a
+                      class="btn btn-flex btn-bg-light btn-color-gray-800 btn-sm me-1"
+                      routerLink="/nsd/dashboard/layout/{{ item.id }}"
+                      [state]="item"
+                    >
+                      Assign
+                    </a>
+                  </div>
+                  <!--end::Actions-->
+                </div>
+                <!--end::Title-->
+              </div>
+              <!--end::Info-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

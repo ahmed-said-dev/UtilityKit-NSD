@@ -1,0 +1,1161 @@
+<div class="card h-100 py-4">
+  <div
+    class="card-header d-flex justify-content-between align-items-center border-0 mb-5"
+  >
+    <!--begin::Page title-->
+    <div class="d-flex">
+      <!--begin::Title-->
+      <h1
+        class="page-heading text-dark fw-bold fs-4 d-flex flex-column justify-content-center my-0"
+      >
+        {{ this.dashboard.name }}
+        <span class="text-muted fs-8 fw-normal mt-2">{{
+          this.dashboard.description
+        }}</span>
+      </h1>
+      <!--end::Title-->
+    </div>
+    <!--end::Page title-->
+  </div>
+
+  <div class="card-body pt-0">
+    <div
+      class="row"
+      [hidden]="dashboard.layoutId !== '2d074daf-a602-40f6-b99e-8bd91ed5013f'"
+    >
+      <div class="col-lg-4 mb-4" id="L1R1C0">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px d-none"
+          (click)="openWidgetsList('L1R1C0')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <!-- <img src="" class="w-100 h-100" /> -->
+              <!-- Drilldown Chart -->
+
+
+
+
+
+                <dx-chart
+                id="chart"
+                [class]="isFirstLevel ? 'pointer-on-bars' : ''"
+                [dataSource]="dataSource"
+                (onPointClick)="onPointClick($event)"
+                title="Electric Line By Type"
+                [customizePoint]="customizePoint"
+
+              >
+                <dxi-series type="bar"></dxi-series>
+                <dxo-legend [visible]="false"></dxo-legend>
+                <dxo-export [enabled]="true"></dxo-export>
+              </dx-chart>
+              <dx-button
+                class="button-container"
+                text="Back"
+                icon="chevronleft"
+                [visible]="!isFirstLevel"
+                (onClick)="onButtonClick()"
+              >
+              </dx-button>
+
+
+
+              <!-- hoidfhsoidfhsoihdfish -->
+              <!-- Export as PDF & CSV -->
+              <button (click)="exportPdf()">Export to PDF</button>
+              <button (click)="exportCsv()">Export to CSV</button>
+
+
+              <!-- Filters -->
+             <div class="col-sm-5 "  *ngIf="filterKeys && filterOptions">
+                      <h2>Filters :</h2>
+                <div *ngFor="let key of filterKeys">
+                  <label>{{ key }}</label>
+                   <select class="form-select slct1" id="specificSizeSelect" (change)="filterDataSource($event, key)">
+                    <option selected disabled>All</option>
+                    <option *ngFor="let option of filterOptions[key]" [value]="option">{{ option }}</option>
+                   </select>
+                </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" id="L1R1C1">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px d-none"
+          (click)="openWidgetsList('L1R1C1')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" id="L1R1C2">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px d-none"
+          (click)="openWidgetsList('L1R1C2')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mb-4" id="L1R0C0">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px d-none"
+          (click)="openWidgetsList('L1R0C0')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row"
+      [hidden]="dashboard.layoutId !== '8c50bd8a-3f74-4881-9bb8-036dc068aeb2'"
+    >
+      <div class="col-lg-4 mb-4" id="L2R1C2">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L2R1C2')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" id="L2R1C1">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L2R1C1')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" id="L2R1C0">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L2R1C0')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4" id="L2R0C1">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L2R0C1')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4" id="L2R0C0">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L2R0C0')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row"
+      [hidden]="dashboard.layoutId !== 'c87beda2-72eb-442c-adec-4605445cda33'"
+    >
+      <div class="col-lg-8 mb-4" id="L3R1C0">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L3R1C0')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" id="L3R1C1">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L3R1C1')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4" id="L3R0C1">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L3R0C1')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4" id="L3R0C0">
+        <div
+          class="btn btn-outline border-dashed border-2 border btn-active-light border-active-secondary d-flex flex-stack justify-content-center p-8 min-h-250px"
+          (click)="openWidgetsList('L3R0C0')"
+        >
+          <!--begin::Image-->
+          <i class="fa fa-plus pe-0 fs-2x"></i>
+          <!--end::Image-->
+        </div>
+
+        <div class="card card-bordered py-4 h-250px min-h-250px d-none">
+          <div
+            class="card-header d-flex justify-content-between align-items-center border-0 px-4"
+          >
+            <!--begin::Page title-->
+            <div class="d-flex">
+              <!--begin::Title-->
+              <h1
+                class="page-heading text-dark fw-bold fs-6 d-flex flex-column justify-content-center my-0"
+              >
+                Widget Name
+              </h1>
+              <!--end::Title-->
+            </div>
+            <!--begin::Primary button-->
+            <a
+              class="btn btn-icon btn-custom btn-sm btn-icon-gray-700 btn-active-light btn-active-color-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-start"
+              placement="top"
+              ngbTooltip="Quick Actions"
+            >
+              <i class="fa-solid fa-ellipsis fs-3"></i>
+            </a>
+            <div
+              class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light fw-semibold w-200px py-4"
+              data-kt-menu="true"
+            >
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openUpdateDataSource()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-table"></i>
+                  </span>
+                  Update Data Source</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                  (click)="openWidgetsSettings()"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  Settings</a
+                >
+              </div>
+              <div class="menu-item px-4">
+                <a
+                  class="menu-link px-4 btn btn-sm btn-active-light text-hover-primary"
+                >
+                  <span class="svg-icon svg-icon-3">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                  Delete</a
+                >
+              </div>
+            </div>
+            <!--end::Primary button-->
+
+            <!--end::Page title-->
+          </div>
+
+          <div class="card-body py-2 px-4">
+            <div class="h-200px bg-light">
+              <img src="" class="w-100 h-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+<div class="card shadow-sm">
+  <div class="card-header py-2">
+    <h4 class="card-title fs-5">
+      <span *ngIf="!editFlag"> Add New Dashboard</span>
+      <span *ngIf="editFlag"> Edit Dashboard</span>
+    </h4>
+
+    <div class="card-toolbar">
+      <!--begin::Close-->
+      <div
+        class="btn btn-icon btn-sm btn-active-light ms-2"
+        placement="top"
+        ngbTooltip="Close"
+        (click)="dismiss()"
+      >
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr088.svg'"
+          class="svg-icon svg-icon-muted svg-icon-1"
+        ></span>
+        <!--end::Svg Icon-->
+      </div>
+      <!--end::Close-->
+    </div>
+  </div>
+  <form [formGroup]="dashboardForm">
+    <div class="card-body py-3 h-400px mh-400px scroll-y">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <label for="name" class="form-label required">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control form-control-sm"
+            placeholder="Name"
+            formControlName="name"
+            minlength="1"
+            maxlength="100"
+            [ngbTooltip]="dashboardForm.controls['name'].invalid && (dashboardForm.controls['name'].dirty || dashboardForm.controls['name'].touched) && dashboardForm.controls['name'].errors?.['required'] ? required : ''"
+            [ngbTooltip]="dashboardForm.controls['name'].invalid && (dashboardForm.controls['name'].dirty || dashboardForm.controls['name'].touched) && dashboardForm.controls['name'].errors?.['maxlength'] ? maxLength : ''"
+            [ngbTooltip]="dashboardForm.controls['name'].invalid && (dashboardForm.controls['name'].dirty || dashboardForm.controls['name'].touched) && dashboardForm.controls['name'].errors?.['minlength'] ? minLength : ''"
+            [ngClass]="{'is-invalid': dashboardForm.controls['name'].invalid && (dashboardForm.controls['name'].dirty || dashboardForm.controls['name'].touched) && dashboardForm.controls['name'].errors?.['required']||dashboardForm.controls['name'].errors?.['maxlength']||dashboardForm.controls['name'].errors?.['minlength']}"
+          />
+          <ng-template placement="top right" #required>
+            <span class="text-danger"> Name is required!</span></ng-template
+          >
+          <ng-template placement="top right" #maxLength>
+            <span class="text-danger">maxLength is 100!</span></ng-template
+          >
+          <ng-template placement="top right" #minLength>
+            <span class="text-danger">minLength is 1!</span></ng-template
+          >
+        </div>
+        <div class="col-12 mb-4">
+          <label for="tags" class="form-label">Tags</label>
+          <input
+            type="text"
+            name="tags"
+            class="form-control form-control-sm"
+            placeholder="Tags"
+            formControlName="tags"
+            minlength="1"
+            maxlength="500"
+            [ngbTooltip]="dashboardForm.controls['tags'].invalid && (dashboardForm.controls['tags'].dirty || dashboardForm.controls['tags'].touched) && dashboardForm.controls['tags'].errors?.['maxlength'] ? maxLength : ''"
+            [ngbTooltip]="dashboardForm.controls['tags'].invalid && (dashboardForm.controls['tags'].dirty || dashboardForm.controls['tags'].touched) && dashboardForm.controls['tags'].errors?.['minlength'] ? minLength : ''"
+            [ngClass]="{'is-invalid': dashboardForm.controls['tags'].invalid && (dashboardForm.controls['tags'].dirty || dashboardForm.controls['tags'].touched) && dashboardForm.controls['tags'].errors?.['maxlength']||dashboardForm.controls['tags'].errors?.['minlength']}"
+          />
+          <ng-template placement="top right" #maxLength>
+            <span class="text-danger">maxLength is 100!</span></ng-template
+          >
+          <ng-template placement="top right" #minLength>
+            <span class="text-danger">minLength is 1!</span></ng-template
+          >
+        </div>
+        <div class="col-12 mb-4">
+          <label for="" class="form-label required">Default Data Source</label>
+          <select
+            class="form-select form-select-sm"
+            aria-label="defaultDataSource"
+            placeholder="Select Data Source"
+            formControlName="dataSourceId"
+          >
+            <option value="">Select Data Source</option>
+            <option
+              *ngFor="let dataSource of dataSources"
+              [value]="dataSource.id"
+            >
+              {{ dataSource.name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="" class="form-label">Description</label>
+          <textarea
+            name="description"
+            rows="4"
+            class="form-control form-control-sm"
+            placeholder="Description"
+            maxlength="500"
+            formControlName="description"
+          >
+          </textarea>
+        </div>
+      </div>
+      <hr />
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-4" *ngFor="let item of this.layouts">
+          <!--begin::Option-->
+          <input
+            type="radio"
+            class="btn-check"
+            id="{{ item.id }}"
+            formControlName="layoutId"
+            [value]="item.id"
+          />
+          <label
+            class="btn btn-outline btn-outline-gray-500 btn-active-primary p-5 mb-5 w-100"
+            for="{{ item.id }}"
+          >
+            <div class="h-100px w-100px">
+              <img
+                src="./assets/media/{{ item.thumbnail }}"
+                class="w-100 h-100"
+              />
+            </div>
+            <span class="flex-column d-flex fw-semibold text-center">
+              <span class="fw-bold d-block fs-6 mt-2">{{ item.name }} </span>
+            </span>
+          </label>
+          <!--end::Option-->
+        </div>
+      </div>
+      <!--end::Row-->
+    </div>
+  </form>
+  <div class="card-footer text-end py-5">
+    <button type="button" class="btn btn-sm btn-light me-2" (click)="dismiss()">
+      Cancel
+    </button>
+    <button
+      type="submit"
+      [disabled]="dashboardForm.invalid || clicked"
+      (window:keyup.enter)="save()"
+      class="btn btn-sm btn-primary"
+      (click)="save()"
+    >
+      <span id="myDIV">Save</span>
+    </button>
+  </div>
+</div>

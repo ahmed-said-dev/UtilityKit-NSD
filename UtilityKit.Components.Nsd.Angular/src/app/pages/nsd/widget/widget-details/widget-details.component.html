@@ -1,0 +1,240 @@
+<div class="row h-100">
+  <div class="col-xl-12 mb-4">
+    <div class="card card-bordered shadow-sm mb-4 h-100">
+      <div class="card-body p-4 pb-0">
+        <div class="d-flex flex-wrap flex-sm-nowrap p-4">
+          <!--begin: Pic-->
+          <div class="me-0 me-lg-10">
+            <div class="symbol symbol-60px symbol-lg-150px symbol-fixed">
+              <img
+                class="w-100 h-100"
+                src="./assets/media/WidgetThumbnails/{{
+                  WidgetData?.thumbnail
+                }}"
+              />
+            </div>
+          </div>
+          <!--end::Pic-->
+
+          <!--begin::Info-->
+          <div class="flex-grow-1">
+            <!--begin::Title-->
+            <div
+              class="d-flex justify-content-between align-items-start flex-wrap mb-0"
+            >
+              <!--begin::User-->
+              <div class="d-flex flex-column">
+                <!--begin::Name-->
+                <div class="d-flex align-items-center my-2">
+                  <h1 class="page-heading fs-5 fw-bold text-capitalize my-0">
+                    {{ WidgetData?.name }}
+                  </h1>
+                </div>
+                <!--end::Name-->
+
+                <!--begin::Info-->
+                <div class="d-flex flex-wrap flex-column fw-semibold fs-6 pe-2">
+                  <span class="text-muted fs-8 fw-semibold">
+                    Creation Date:
+                    <span class="text-dark fs-8 fw-semibold ms-4">
+                      {{ WidgetData?.creationDate }}
+                    </span>
+                  </span>
+                  <span class="text-muted fs-8 fw-semibold">
+                    Created By:
+                    <span class="text-dark fs-8 fw-semibold ms-4">
+                      {{ WidgetData?.createdBy }}
+                    </span>
+                  </span>
+                  <div class="mb-4 mt-2">
+                    <span
+                      class="badge badge-sm badge-light py-2 fs-8 me-2"
+                      *ngFor="let widgetindustries of WidgetData?.industries"
+                    >
+                      {{ ndustryEnum[widgetindustries] }}
+                    </span>
+                  </div>
+                  <span class="text-muted fs-8 fw-semibold">
+                    <!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Quibusdam debitis labore voluptas dolore ad autem asperiores
+                    quos unde distinctio nihil molestiae, optio, illo esse
+                    beatae. Ab dolores dolore pariatur explicabo! Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit. Eveniet sint
+                    magnam autem ipsa cupiditate praesentium atque pariatur quia
+                    ea, officia, impedit fuga sunt. -->
+                    {{ WidgetData?.description }}
+                  </span>
+                </div>
+                <!--end::Info-->
+              </div>
+              <!--end::User-->
+            </div>
+            <!--end::Title-->
+          </div>
+          <!--end::Info-->
+
+          <div
+            class="ms-0 ms-lg-10 d-flex justify-content-center align-content-center align-items-center"
+          >
+            <!--begin::Actions-->
+            <div class="d-flex">
+              <a
+                *ngIf="!WidgetData?.isBuiltIn"
+                (click)="openManageWidgetGallery()"
+                placement="top"
+                ngbTooltip="Edit"
+                class="btn btn-icon btn-bg-light btn-color-gray-800 btn-sm me-1"
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen055.svg'
+                  "
+                  class="svg-icon svg-icon-3"
+                ></span>
+              </a>
+              <a
+                *ngIf="!WidgetData?.isBuiltIn"
+                placement="top"
+                ngbTooltip="Delete"
+                class="btn btn-icon btn-bg-light btn-color-gray-800 btn-sm me-1"
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen027.svg'
+                  "
+                  class="svg-icon svg-icon-3"
+                ></span>
+              </a>
+            </div>
+            <!--end::Actions-->
+          </div>
+        </div>
+        <div class="separator my-5"></div>
+        <div
+          class="card-header d-flex justify-content-between align-items-center border-0 mb-5 px-4"
+        >
+          <!--begin::Page title-->
+          <div class="d-flex">
+            <!--begin::Title-->
+            <h1
+              class="page-heading text-dark fw-bold fs-4 d-flex flex-column justify-content-center my-0"
+            >
+              Configurations Definitions
+              <span class="text-muted fs-8 fw-normal mt-2"
+                >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy</span
+              >
+            </h1>
+            <!--end::Title-->
+          </div>
+          <!--begin::Primary button-->
+          <a
+            class="btn btn-sm fw-bold btn-dark"
+            (click)="openManageConfigurations()"
+          >
+            <i class="fa fa-plus me-2"></i>
+            Add New</a
+          >
+
+          <!--end::Primary button-->
+
+          <!--end::Page title-->
+        </div>
+        <div
+          *ngIf="Configurations.length === 0 && flag"
+          class="d-flex justify-content-center align-content-center align-items-center"
+        >
+          <!--begin::Alert-->
+          <div
+            class="w-100 d-flex flex-column justify-content-center justify-items-center align-content-center align-items-center p-5 mb-0"
+          >
+            <!--begin::Icon-->
+            <img
+              src="assets/media/alert/alert.svg"
+              class="mx-auto h-200px h-lg-200px"
+            />
+            <!--end::Icon-->
+            <div class="fs-1 fw-bold text-gray-800 text-center mb-5">
+              Currently, No Configurations Definitions found.
+              <span class="fs-4 text-muted d-block fw-normal"
+                >Click to add new Configuration Definition</span
+              >
+            </div>
+            <a
+              class="btn btn-flex btn-sm btn-primary fw-bold border-0"
+              (click)="openManageConfigurations()"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen041.svg'"
+                class="svg-icon svg-icon-2"
+              ></span>
+              Add New</a
+            >
+          </div>
+          <!--end::Alert-->
+        </div>
+        <div class="card-body py-0 px-3" [hidden]="Configurations.length === 0">
+          <table
+            class="table align-middle table-row-dashed mb-0 table-hover gx-7"
+          >
+            <thead>
+              <tr class="fw-bold text-dark">
+                <th class="min-w-md-125px">Name</th>
+                <th class="min-w-md-125px">Type</th>
+                <th class="min-w-md-125px">Default Value</th>
+                <th class="text-end">Actions</th>
+                <!-- <th *ngIf="!WidgetData?.isBuiltIn" class="text-end">Actions</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of Configurations">
+                <td>{{ item.key }}</td>
+                <td>
+                  {{
+                    item.type === 1
+                      ? "Text"
+                      : item.type === 2
+                      ? "Multi-Choice"
+                      : "Check"
+                  }}
+                </td>
+                <td>{{ item.value }}</td>
+                <td class="text-end">
+                  <div class="d-flex justify-content-end flex-shrink-0">
+                    <a
+                      placement="top"
+                      ngbTooltip="Edit"
+                      class="btn btn-icon btn-bg-light btn-color-gray-800 btn-sm me-1"
+                      (click)="onEdit(item)"
+                    >
+                      <span
+                        [inlineSVG]="
+                          './assets/media/icons/duotune/general/gen055.svg'
+                        "
+                        class="svg-icon svg-icon-3"
+                      ></span>
+                    </a>
+                    <a
+                      placement="top"
+                      ngbTooltip="Delete"
+                      class="btn btn-icon btn-bg-light btn-color-gray-800 btn-sm"
+                      (click)="onDelete(item)"
+                    >
+                      <!-- [class.disabled]="getAllDomain.hasUsers" -->
+                      <span
+                        [inlineSVG]="
+                          './assets/media/icons/duotune/general/gen027.svg'
+                        "
+                        class="svg-icon svg-icon-3"
+                      ></span>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
