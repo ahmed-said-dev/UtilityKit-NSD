@@ -1,0 +1,69 @@
+<div class="card shadow-sm">
+  <div class="card-header py-2">
+    <h4 class="card-title fs-5">
+      <span> Update Widget Settings</span>
+    </h4>
+
+    <div class="card-toolbar">
+      <div
+        class="btn btn-icon btn-sm btn-active-light ms-2"
+        placement="top"
+        ngbTooltip="Close"
+        (click)="dismiss()"
+      >
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr088.svg'"
+          class="svg-icon svg-icon-muted svg-icon-1"
+        ></span>
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="card-body py-3 h-400px mh-400px scroll-y">
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-4" *ngFor="let widget of this.widgets">
+          <!--begin::Option-->
+          <input
+            type="radio"
+            class="btn-check"
+            id="{{ widget.id }}"
+            [formControl]="widgetId"
+            [value]="widget.id"
+          />
+          <label
+            class="btn btn-outline btn-active-light-primary border-active-primary d-flex flex-stack flex-column justify-content-center p-5"
+            for="{{ widget.id }}"
+          >
+            <div class="h-125px w-125px bg-light">
+              <img
+                src="./assets/media/WidgetThumbnails/{{ widget.thumbnail }}"
+                class="w-100 h-100"
+              />
+            </div>
+            <span class="flex-column d-flex fw-semibold text-center">
+              <span class="fw-bold d-block fs-6 mt-2">{{ widget.name }} </span>
+            </span>
+          </label>
+          <!--end::Option-->
+        </div>
+      </div>
+      <!--end::Row-->
+    </div>
+  </form>
+  <div class="card-footer text-end py-5">
+    <button type="button" class="btn btn-sm btn-light me-2" (click)="dismiss()">
+      Cancel
+    </button>
+    <button
+      type="submit"
+      [disabled]="!widgetId.value || clicked"
+      (window:keyup.enter)="save()"
+      class="btn btn-sm btn-primary"
+      (click)="save()"
+      class="btn btn-sm btn-primary"
+    >
+      <span id="myDIV">Save</span>
+    </button>
+  </div>
+</div>

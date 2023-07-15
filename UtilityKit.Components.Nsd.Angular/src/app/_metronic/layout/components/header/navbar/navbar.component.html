@@ -1,0 +1,79 @@
+<!--begin::Info-->
+<div class="app-navbar-item" [ngClass]="itemClass">
+  <!--begin::Menu wrapper-->
+  <div
+    [ngClass]="btnClass"
+    data-kt-menu-trigger="click"
+    placement="left"
+    ngbTooltip="Help"
+    data-kt-menu-attach="parent"
+    data-kt-menu-placement="bottom-end"
+  >
+    <span
+      [inlineSVG]="'./assets/media/icons/duotune/general/gen046.svg'"
+      class="svg-icon"
+      [ngClass]="btnIconClass"
+    ></span>
+  </div>
+  <!--end::Menu wrapper-->
+</div>
+<!--end::Info-->
+
+<!--begin::Theme mode-->
+<div class="app-navbar-item">
+  <div>
+    <app-theme-mode-switcher
+      placement="left"
+      ngbTooltip="Theme Mode"
+      [toggleBtnClass]="btnClass"
+      toggleBtnClass="{`btn-active-light-primary btn-custom ${toolbarButtonHeightClass}`}"
+    >
+    </app-theme-mode-switcher>
+  </div>
+</div>
+<!--end::Theme mode-->
+
+<!--begin::User menu-->
+<div class="app-navbar-item" [ngClass]="itemClass">
+  <!--begin::Menu wrapper-->
+  <div
+    class="cursor-pointer symbol"
+    placement="left"
+    ngbTooltip="User Info"
+    [ngClass]="userAvatarClass"
+    data-kt-menu-trigger="{default: 'click'}"
+    data-kt-menu-attach="parent"
+    data-kt-menu-placement="bottom-end"
+  >
+    <!--begin::Symbol-->
+    <div class="symbol symbol-40px symbol-md-40px">
+      <div
+        class="symbol-label fs-2 fw-semibold bg-primary text-inverse-primary"
+      >
+        SA
+      </div>
+
+      <!--end::Symbol-->
+    </div>
+    <app-user-inner data-kt-menu="true"></app-user-inner>
+    <!--end::Menu wrapper-->
+  </div>
+  <!--end::User menu-->
+</div>
+
+<!--begin::Header menu toggle-->
+<ng-container *ngIf="appHeaderDefaulMenuDisplay">
+  <div class="app-navbar-item d-lg-none ms-2 me-n3" title="Show header menu">
+    <div
+      class="btn btn-icon btn-active-color-primary w-35px h-35px"
+      id="kt_app_header_menu_toggle"
+    >
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/text/txt001.svg'"
+        class="svg-icon"
+        [ngClass]="btnIconClass"
+      ></span>
+    </div>
+  </div>
+</ng-container>
+<!--end::Header menu toggle-->

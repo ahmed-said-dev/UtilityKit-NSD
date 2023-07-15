@@ -1,0 +1,180 @@
+<!-- Add Custom Widget -->
+<div class="card shadow-sm">
+  <div class="card-header py-2">
+    <h4 class="card-title fs-5">
+      <span> Add Custom Widget</span>
+    </h4>
+
+    <div class="card-toolbar">
+      <div
+        class="btn btn-icon btn-sm btn-active-light ms-2"
+        placement="top"
+        ngbTooltip="Close"
+      >
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr088.svg'"
+          class="svg-icon svg-icon-muted svg-icon-1"
+        ></span>
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="card-body py-3 h-400px mh-400px scroll-y">
+      <div class="row pt-5">
+        <div class="col-lg-9">
+          <div class="row">
+            <div class="col-8 mb-4">
+              <label for="name" class="form-label required">Name</label>
+              <input
+                type="text"
+                name="name"
+                class="form-control form-control-sm"
+                placeholder="Name"
+              />
+            </div>
+            <div class="col-4 mb-4">
+              <label for="" class="form-label required"
+                >Minimum Cell Size</label
+              >
+              <select class="form-select form-select-sm" aria-label="">
+                <option value="" disabled>Select Size</option>
+                <option [value]="1">col-3</option>
+                <option [value]="2">col-4</option>
+                <option [value]="3">col-5</option>
+              </select>
+            </div>
+            <div class="col-12 mb-4">
+              <div class="w-100">
+                <label for="files" class="form-label required"
+                  >Widget Files
+                </label>
+                <div class="d-flex">
+                  <input
+                    type="file"
+                    class="form-control form-control-sm flex-grow-1"
+                    placeholder="Upload Widget Files"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mb-4">
+              <label for="industry" class="form-label required">Industry</label>
+              <div class="form-check form-check-custom form-check-solid mt-1">
+                <div class="me-5">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="water"
+                    />
+                    <label class="form-check-label text-body" for="water">
+                      Water
+                    </label>
+                  </div>
+                </div>
+                <div class="me-5">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="electric"
+                    />
+                    <label class="form-check-label text-body" for="electric">
+                      Electric
+                    </label>
+                  </div>
+                </div>
+                <div class="me-5">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <input class="form-check-input" type="checkbox" id="gas" />
+                    <label class="form-check-label text-body" for="gas">
+                      Gas
+                    </label>
+                  </div>
+                </div>
+                <div class="me-5">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="telecome"
+                    />
+                    <label class="form-check-label text-body" for="telecome">
+                      Telecome
+                    </label>
+                  </div>
+                </div>
+                <div class="me-5">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="sewer"
+                    />
+                    <label class="form-check-label text-body" for="sewer">
+                      Sewer
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 mb-4">
+          <div
+            class="image-input image-input-outline"
+            data-kt-image-input="true"
+            style="background-image: url('assets/media/svg/avatars/blank.svg')"
+          >
+            <div
+              class="image-input-wrapper w-125px h-125px"
+              style="background-image: url(assets/media/avatars/300-1.jpg)"
+            ></div>
+            <label
+              class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+              data-kt-image-input-action="change"
+            >
+              <i class="bi bi-pencil-fill fs-7"></i>
+
+              <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+              <input type="hidden" name="avatar_remove" />
+            </label>
+            <span
+              class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+              data-kt-image-input-action="cancel"
+              placement="top"
+              ngbTooltip="Remove avatar"
+            >
+              <i class="bi bi-x fs-2"></i>
+            </span>
+            <span
+              class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+              data-kt-image-input-action="remove"
+              placement="top"
+              ngbTooltip="Remove avatar"
+            >
+              <i class="bi bi-x fs-2"></i>
+            </span>
+          </div>
+          <div class="form-text">Allowed files: png, jpg, jpeg.</div>
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            type="text"
+            rows="4"
+            class="form-control form-control-sm"
+            placeholder="Widget description"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="card-footer text-end py-5">
+    <button type="button" class="btn btn-sm btn-light me-2">Cancel</button>
+    <button type="submit" class="btn btn-sm btn-primary">
+      <span>Save</span>
+    </button>
+  </div>
+</div>
